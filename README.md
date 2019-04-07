@@ -1,17 +1,19 @@
-# bitcoinmningw-gas
-It measures the profit that a miner can reach per day with natural gas given lots of external data that gets updated daily.
+Si you ejecuto el fichero ejecuta en este ordenador, la otra máquina debería
+estar con el nodo de bitcoin corriendo y actualizado.
 
-In the first computer where I run my node:
+RunProceso de Windows debería llamar en ubuntu a:
 
-- It uses data from a gas sample to know how much power you can get from that gas sample
-- With that information and the specs of a 400kw gas engine, it knows how much power it can produce for 165 miners with the highest Th/s in the market at each moment (44Th/s at the moment of writing this)
-- It gets daily information about bitcoin prices and network hash-rate, as well as information from my node about blocks produced and bitcoins issued.
-- This information is published by an API and available in a domain name.
+- LecturaPrecios
+- LecturaNet_Hash_Rate
+- Asegurarme de que csvcomputer está bien relleno
+- en python-bitcoinlib llamar a prueba2.py
+- Con todo esto ejecutar rellenarExcel.py
+- Con todo ello ejecutar apirun de ubuntu
 
-The second computer:
+En Windows:
 
-- consumes the information from the 1st computer via API.
-- Fills in an excel sheet where all the calculations are made.
-- With this information a couple of macros are ran and we get from there the latest break-even $/mmBtu data, which is precisely the amount of USD/mmBtu that the gas producer can earn for his gas.
-- This data gets published via twitter and eventually in a website.
-
+- A continuación, en este ordenador hay que ejecutar rellenarExcel2
+- Con la tabla excel_hash_rate rellena, vamos al fichero de excel y actualizamos la hoja net_hash_rate
+- Otro fichero de python debería ejecutar las dos macros dentro de la hoja
+- Luego apirun debería ejecutar panditas y sacar los datos de $/mmbtu de la hoja
+- Deberíamos con esto poder sacarlos en pantalla o imprimirlos en twitter 
