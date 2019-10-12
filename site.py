@@ -1,7 +1,7 @@
 
 
 class Site(object):
-    def __init__(self, revenues=Revenues(), variablecost=Variablecost(), energysource=Energysource(), depreciations=Depreciations(), taxes=Taxes(), capex=Capex(), hashrateVariation, btcPriceVariation):
+    def __init__(self, hashrateVariation, btcPriceVariation, revenues=Revenues(), variablecost=Variablecost(), energysource=Energysource(), depreciations=Depreciations(), taxes=Taxes(), capex=Capex()):
         self.revenues = revenues
         self.variablecost = variablecost
         self.energysource = energysource
