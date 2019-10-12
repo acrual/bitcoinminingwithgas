@@ -1,6 +1,5 @@
 class Capex(object):
-    def __init__(self, containersYesNo, numberOfContainers, minersCost, replacementCost, setupCost):
-        self.containersYesNo = containersYesNo
+    def __init__(self, numberOfContainers, minersCost=Miners(), replacementCost, setupCost):
         self.numberOfContainers = numberOfContainers
         self.minersCost = minersCost
         self.replacementCost = replacementCost
@@ -9,4 +8,4 @@ class Capex(object):
     def __str__(self):
         return "Whatever"
 
-    
+    def

@@ -15,8 +15,21 @@ class Site(object):
     def __str__(self):
         return "This is the site"
 
+    def btcRevenuesOfMonth(self, n):
+        return revenues.monthlyrevenueBTCmonthOne * ((1 - self.hashrateVariation) ** n)
 
-    def contributionMargin(self):
+    def usdRevenuesOfMonth(self, n):
+        return revenues.monthlyrevenueUSDmonthOne * ((1 - self.btcPriceVariation) ** n)
+
+    def listOfBtcMonthlyRevenues(self):
+        for i in range(60):
+            list.append(self.btcRevenuesOfMonth(i))
+        return list
+
+    def listOfUsdMonthlyRevenues(self):
+        for i in range(60):
+            list.append(self.usdRevenuesOfMonth(i))
+        return list
 
 
     
