@@ -6,6 +6,8 @@ from revenues import *
 from operationsite import Site
 from variablecost import Variablecost
 from capex import Capex
+import ejecutar
+
 
 taxes = Taxes(10)
 depreciations = Depreciations(3, 20)
