@@ -1,7 +1,13 @@
+from revenues import Revenues
+from variablecost import *
+from energysource import *
+from depreciations import *
+from taxes import *
+from capex import *
 
 
 class Site(object):
-    def __init__(self, hashrateVariation, btcPriceVariation, revenues=Revenues(), variablecost=Variablecost(), energysource=Energysource(), depreciations=Depreciations(), taxes=Taxes(), capex=Capex()):
+    def __init__(self, hashrateVariation, btcPriceVariation, revenues, variablecost, energysource, depreciations, taxes, capex):
         self.revenues = revenues
         self.variablecost = variablecost
         self.energysource = energysource
@@ -16,10 +22,10 @@ class Site(object):
         return "This is the site"
 
     def btcRevenuesOfMonth(self, n):
-        return revenues.monthlyrevenueBTCmonthOne * ((1 - self.hashrateVariation) ** n)
+        return self.revenues.monthlyrevenueBTCmonthOne() * ((1 - self.hashrateVariation) ** n)
 
     def usdRevenuesOfMonth(self, n):
-        return revenues.monthlyrevenueUSDmonthOne * ((1 - self.btcPriceVariation) ** n)
+        return self.revenues.monthlyrevenueUSDmonthOne() * ((1 - self.btcPriceVariation) ** n)
 
     def listOfBtcMonthlyRevenues(self):
         for i in range(60):
