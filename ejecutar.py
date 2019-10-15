@@ -5,6 +5,7 @@ from wtforms import (StringField, BooleanField, DateTimeField, FloatField,
 
 from wtforms.validators import DataRequired
 
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'mykey'
@@ -14,6 +15,9 @@ class SimpleForm(FlaskForm):
     btcpricevariation = FloatField('What btc price increase do you expect?', validators=[DataRequired()])
     numminers = FloatField('How many miners will you have?', validators=[DataRequired()])
     miningyield = FloatField('Mining yield?', validators=[DataRequired()])
+    date = DateTimeField('Date?', validators=[DataRequired()])
+    savings = TextAreaField('Please explain briefly what the savings are all about', validators=[DataRequired()])
+
     submit = SubmitField('Calculate')
 
 
@@ -35,6 +39,8 @@ def index():
         session['btcpricevariation'] = form.btcpricevariation.data
         session['numminers'] = form.numminers.data
         session['miningyield'] = form.miningyield.data
+        session['date'] = form.date.data
+        session['savings'] = form.savings.data
         flash(f"You just changed your site data to: {session['hashratevariation'], session['btcpricevariation'], session['numminers'], session['miningyield']}")
         return redirect(url_for('index'))
 
