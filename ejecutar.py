@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_wtf import FlaskForm
-from wtforms import (StringField, BooleanField, DateTimeField,
+from wtforms import (StringField, BooleanField, DateTimeField, FloatField,
                     RadioField, SelectField, TextField, TextAreaField, SubmitField)
 
 from wtforms.validators import DataRequired
@@ -10,8 +10,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mykey'
 
 class SimpleForm(FlaskForm):
-    breed = StringField('What breed are you?', validators=[DataRequired()])
-    submit = SubmitField('Change breed')
+    hashratevariation = FloatField('What hash rate increase do you expect?', validators=[DataRequired()])
+    btcpricevariation = FloatField('What btc price increase do you expect?', validators=[DataRequired()])
+    numminers = FloatField('How many miners will you have?', validators=[DataRequired()])
+    miningyield = FloatField('Mining yield?', validators=[DataRequired()])
+    submit = SubmitField('Calculate')
+
 
 """ class InfoForm(FlaskForm):
     breed = StringField('What breed are you?', validators=[DataRequired()])
@@ -27,22 +31,14 @@ class SimpleForm(FlaskForm):
 def index():
     form = SimpleForm()
     if form.validate_on_submit():
-        session['breed'] = form.breed.data
-        flash(f"You just changed your breed to: {session['breed']}")
+        session['hashratevariation'] = form.hashratevariation.data
+        session['btcpricevariation'] = form.btcpricevariation.data
+        session['numminers'] = form.numminers.data
+        session['miningyield'] = form.miningyield.data
+        flash(f"You just changed your site data to: {session['hashratevariation'], session['btcpricevariation'], session['numminers'], session['miningyield']}")
         return redirect(url_for('index'))
 
     return render_template('index.html', form=form)
-    """ form = InfoForm()
-    if form.validate_on_submit():
-        session['breed'] = form.breed.data
-        session['neutered'] = form.neutered.data
-        session['mood'] = form.mood.data   
-        session['food_choice'] = form.food_choice.data
-        session['feedback'] = form.feedback.data
-
-        return redirect(url_for('thankyou'))
-
-    return render_template('index.html', form=form) """
 
 """ @app.route('/thankyou')
 def thankyou():

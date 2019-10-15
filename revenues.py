@@ -1,8 +1,7 @@
 from savings import *
 
 class Revenues(object):
-    def __init__(self, numContainers, minersPerContainer, miningYield, mmdd, savings):
-        self.numContainers = numContainers
+    def __init__(self, minersPerContainer, miningYield, mmdd, savings):
         self.minersPerContainer = minersPerContainer
         self.miningYield = miningYield
         self.mmdd = mmdd

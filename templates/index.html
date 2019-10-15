@@ -20,7 +20,10 @@
   {% endfor %}
   <form method="POST">
       {{form.hidden_tag()}}
-      {{form.breed}}
+      <p>Hashrate esperado</p>{{form.hashratevariation}}
+      <p>Evolución de precio esperada</p>{{form.btcpricevariation}}
+      <p>Número de mineros</p>{{form.numminers}}
+      <p>Mining yield</p>{{form.miningyield}}
       {{form.submit()}}
   </form>
 </body>
