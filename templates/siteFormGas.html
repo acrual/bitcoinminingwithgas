@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-{% for mess in get_flashed_messages() %}
 
+{% for mess in get_flashed_messages() %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <button type="button" class="fade close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -9,7 +9,7 @@
     {{ mess }}
   </div>
   {% endfor %}
-
+<p>Con gas</p>
 <form method="POST">
     {{form2.hidden_tag()}}
     <p>Hashrate esperado</p>{{form2.hashratevariation}}
