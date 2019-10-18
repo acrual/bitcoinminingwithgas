@@ -21,7 +21,7 @@ class GasForm(FlaskForm):
     miningyield = FloatField('Mining yield?', validators=[DataRequired()])
     date = DateTimeField('Date?', validators=[DataRequired()])
     savings = TextAreaField('Please explain briefly what the savings are all about', validators=[DataRequired()])
-    submit = SubmitField('Calculate')
+    submit2 = SubmitField('Calculate')
 
 class NoGasForm(FlaskForm):
     hashratevariation = FloatField('What hash rate increase do you expect?', validators=[DataRequired()])
@@ -30,46 +30,50 @@ class NoGasForm(FlaskForm):
     miningyield = FloatField('Mining yield?', validators=[DataRequired()])
     date = DateTimeField('Date?', validators=[DataRequired()])
     savings = TextAreaField('Please explain briefly what the savings are all about', validators=[DataRequired()])
-    submit = SubmitField('Calculate')
+    submit2 = SubmitField('Calculate')
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    form2 = GensetForm()
-    if form2.validate_on_submit():
-        session['gensetYesNo'] = form2.gensetYesNo.data
+    form = GensetForm()
+    print(form.errors)
+    print("pasa : ", session['gensetYesNo'])
+    if form.validate_on_submit():
+        
+        session['gensetYesNo'] = form.gensetYesNo.data
+        print("pasa esto otro: ", session['gensetYesNo'])
         if session['gensetYesNo'] == 1:
             return redirect(url_for('siteFormGas'))
         else:
             return redirect(url_for('siteFormNoGas'))
-    return render_template('index.html', form2=form2)
+    return render_template('index.html', form=form)
     
 @app.route('/siteFormGas', methods=['GET', 'POST'])
 def siteFormGas():
-    form = GasForm()
-    if form.validate_on_submit():
-        session['hashratevariation'] = form.hashratevariation.data
-        session['btcpricevariation'] = form.btcpricevariation.data
-        session['numminers'] = form.numminers.data
-        session['miningyield'] = form.miningyield.data
-        session['date'] = form.date.data
+    form2 = GasForm()
+    if form2.validate_on_submit():
+        session['hashratevariation'] = form2.hashratevariation.data
+        session['btcpricevariation'] = form2.btcpricevariation.data
+        session['numminers'] = form2.numminers.data
+        session['miningyield'] = form2.miningyield.data
+        session['date'] = form2.date.data
         session['savings'] = form.savings.data
         flash(f"You just changed your site data to: {session['hashratevariation'], session['btcpricevariation'], session['numminers'], session['miningyield']}")
         return redirect(url_for('index'))
-    return render_template('siteFormGas.html', form=form)
+    return render_template('siteFormGas.html', form2=form2)
 
 @app.route('/siteFormNoGas', methods=['GET', 'POST'])
 def siteFormNoGas():
-    form = NoGasForm()
-    if form.validate_on_submit():
-        session['hashratevariation'] = form.hashratevariation.data
-        session['btcpricevariation'] = form.btcpricevariation.data
-        session['numminers'] = form.numminers.data
-        session['miningyield'] = form.miningyield.data
-        session['date'] = form.date.data
-        session['savings'] = form.savings.data
+    form3 = NoGasForm()
+    if form3.validate_on_submit():
+        session['hashratevariation'] = form3.hashratevariation.data
+        session['btcpricevariation'] = form3.btcpricevariation.data
+        session['numminers'] = form3.numminers.data
+        session['miningyield'] = form3.miningyield.data
+        session['date'] = form3.date.data
+        session['savings'] = form3.savings.data
         flash(f"You just changed your site data to: {session['hashratevariation'], session['btcpricevariation'], session['numminers'], session['miningyield']}")
         return redirect(url_for('index'))
-    return render_template('siteFormNoGas.html', form=form)
+    return render_template('siteFormNoGas.html', form3=form3)
 
 if __name__ == "__main__":
     app.run(debug=True)

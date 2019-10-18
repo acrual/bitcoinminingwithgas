@@ -12,9 +12,10 @@
   {% endfor %}
   
   <form method="POST">
-        {{form2.hidden_tag()}}
-        {{form2.gensetYesNo}}
-        {{form2.submit()}}
+      
+        {{ form.hidden_tag() }}
+        {{ form.gensetYesNo }}
+        {{ form.submit() }}
   </form>
     
   {% endblock %}

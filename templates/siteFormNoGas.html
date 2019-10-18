@@ -10,15 +10,15 @@
     {{ mess }}
   </div>
   {% endfor %}
-  
+
 <form method="POST">
-    {{form.hidden_tag()}}
-    <p>Hashrate esperado</p>{{form.hashratevariation}}
-    <p>Evolución de precio esperada</p>{{form.btcpricevariation}}
-    <p>Número de mineros</p>{{form.numminers}}
-    <p>Mining yield</p>{{form.miningyield}}
-    <p>Date</p>{{form.date}}
-    <p>Savings</p>{{form.savings}}
-    {{form.submit()}}
+    {{form3.hidden_tag()}}
+    <p>Hashrate esperado</p>{{form3.hashratevariation}}
+    <p>Evolución de precio esperada</p>{{form3.btcpricevariation}}
+    <p>Número de mineros</p>{{form3.numminers}}
+    <p>Mining yield</p>{{form3.miningyield}}
+    <p>Date</p>{{form3.date}}
+    <p>Savings</p>{{form3.savings}}
+    {{form3.submit()}}
 </form>
 {% endblock %}
